@@ -1,4 +1,4 @@
-# F_Point algorithm: notes, scripts, data
+# F-Point algorithm: notes, scripts, data
 
 Author: Vitaly Efremov <v_a_efremov at yahoo.com>
 
