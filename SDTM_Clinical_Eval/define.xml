@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href="define1-0-0.xsl"?>
+<!-- ******************************************************************************* -->
+<!-- File: define.xml                                                                -->
+<!-- Date: 08NOV2022                                                                -->
+<!-- Description: Define.xml file for R11318L                          -->
+<!-- ******************************************************************************* -->
+<ODM
+  xmlns="http://www.cdisc.org/ns/odm/v1.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:def="http://www.cdisc.org/ns/def/v1.0"
+  xsi:schemaLocation="http://www.cdisc.org/ns/odm/v1.2 define1-0-0.xsd"
+  FileOID="R11318L"
+  ODMVersion="1.2"
+  FileType="Snapshot"
+  CreationDateTime="2018-10-08T09:18:29">
+<Study OID="18L">
+  <GlobalVariables>
+    <StudyName>R11318L</StudyName>
+    <StudyDescription>A PREMARKET, ONE-CENTER, CROSS-SECTIONAL, PROSPECTIVE-RETROSPECTIVE PILOT CLINICAL PERFORMANCE EVALUATION STUDY OF A NEAR-THE-PATIENT FIBRINOGEN IVD ASSAY "F-POINT"</StudyDescription>
+    <ProtocolName>R11318L</ProtocolName>
+  </GlobalVariables>
+  <MetaDataVersion OID="CDISC.SDTM.3.1.2"
+    Name="R11318L,Data Definitions"
+    Description="R11318L,Data Definitions"
+    def:DefineVersion="1.0.0"
+    def:StandardName="CDISC SDTM"
+    def:StandardVersion="3.1.2">
+    <!-- ******************************************* -->
+    <!-- COMPUTATIONAL METHOD INFORMATION        *** -->
+    <!-- ******************************************* -->
+    <def:ComputationMethod OID="LBCAT_CALC">if LBTESTCD= "PLAT" or LBTESTCD ="HCT" then LBCAT= "HEMATOLOGY" else LBCAT="COAGULATION"</def:ComputationMethod>
+    <def:ComputationMethod OID="LBSTRESU_CALC">if LBTESTCD="HCT" then LBSTRESU="v/v" else LBSTRESU=LBORRESU</def:ComputationMethod>
+    <def:ComputationMethod OID="LBSTRESN_CALC">if LBTESTCD="HCT" then LBSTRESN=0.01*LBORRES else LBSTRESN=LBORRES</def:ComputationMethod>
+    <def:ComputationMethod OID="LBSTNRLO_CALC">if LBTESTCD="HCT" then LBSTNRLO=0.01*LBORNRLO else LBSTNRLO=LBORNRLO</def:ComputationMethod>
+    <def:ComputationMethod OID="LBSTNRHI_CALC">if LBTESTCD="HCT" then LBSTNRHI=0.01*LBORNRHI else LBSTNRHI=LBORNRHI</def:ComputationMethod>
+    <def:ComputationMethod OID="LBNRIND_CALC">if LBSTRESN&lt;LBSTNRLO then LBSTRESN="L"; else if LBSTRESN&gt;LBSTNRHI then LBSTRESN="H"; else LBSTRE</def:ComputationMethod>
+    <!-- ******************************************* -->
+    <!-- VALUE LEVEL LIST DEFINITION INFORMATION  ** -->
+    <!-- ******************************************* -->
+    <def:ValueListDef OID="LBTESTCDVALUE">
+      <ItemRef ItemOID="LBTESTCDVALUE.FIBRINO"
+        Mandatory="No"/>
+      <ItemRef ItemOID="LBTESTCDVALUE.PT"
+        Mandatory="No"/>
+      <ItemRef ItemOID="LBTESTCDVALUE.APTT"
+        Mandatory="No"/>
+      <ItemRef ItemOID="LBTESTCDVALUE.HCT"
+        Mandatory="No"/>
+      <ItemRef ItemOID="LBTESTCDVALUE.PLAT"
+        Mandatory="No"/>
+    </def:ValueListDef>
+    <!-- ******************************************* -->
+    <!-- DM             ItemGroupDef INFORMATION *** -->
+    <!-- ******************************************* -->
+    <ItemGroupDef OID="DM"
+      Name="DM"
+      Repeating="No"
+      Purpose="Tabulation"
+      IsReferenceData="No"
+      def:Label="Demographics"
+      def:Structure="Special Purpose - One record per event per subject"
+      def:DomainKeys="STUDYID, USUBJID, ARM"
+      def:Class="Special Purpose"
+      def:ArchiveLocationID="Location../dm">
+      <ItemRef ItemOID="STUDYID"
+        OrderNumber="1"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DOMAIN"
+        OrderNumber="2"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="SUBJID"
+        OrderNumber="3"
+        Mandatory="Yes"
+        Role="Topic"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="USUBJID"
+        OrderNumber="4"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.SITEID"
+        OrderNumber="5"
+        Mandatory="Yes"
+        Role="Record Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.RFSTDTC"
+        OrderNumber="6"
+        Mandatory="Yes"
+        Role="Timing"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.RFETDTC"
+        OrderNumber="7"
+        Mandatory="Yes"
+        Role="Timing"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.AGE"
+        OrderNumber="8"
+        Mandatory="No"
+        Role="Record Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.AGEU"
+        OrderNumber="9"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.ARMCD"
+        OrderNumber="10"
+        Mandatory="Yes"
+        Role="Record Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.ARM"
+        OrderNumber="11"
+        Mandatory="Yes"
+        Role="Synonym Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.SEX"
+        OrderNumber="12"
+        Mandatory="Yes"
+        Role="Result Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DM.COUNTRY"
+        OrderNumber="13"
+        Mandatory="Yes"
+        Role="Result Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <!-- **************************************************** -->
+      <!-- def:leaf details for hypertext linking the dataset   -->
+      <!-- **************************************************** -->
+      <def:leaf ID="Location.DM" xlink:href="./dm.xpt">
+        <def:title>./dm.xpt </def:title>
+      </def:leaf>
+    </ItemGroupDef>
+    <!-- ******************************************* -->
+    <!-- LB             ItemGroupDef INFORMATION *** -->
+    <!-- ******************************************* -->
+    <ItemGroupDef OID="LB"
+      Name="LB"
+      Repeating="Yes"
+      Purpose="Tabulation"
+      IsReferenceData="No"
+      def:Label="Laboratory Tests"
+      def:Structure="Findings - One record per lab test per subject"
+      def:DomainKeys="STUDYID, USUBJID, LBCAT, LBTESTCD, LBMETHOD"
+      def:Class="Findings"
+      def:ArchiveLocationID="Location../lb">
+      <ItemRef ItemOID="STUDYID"
+        OrderNumber="1"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DOMAIN"
+        OrderNumber="2"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="USUBJID"
+        OrderNumber="3"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBSEQ"
+        OrderNumber="4"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBTESTCD"
+        OrderNumber="5"
+        Mandatory="Yes"
+        Role="Topic"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBTEST"
+        OrderNumber="6"
+        Mandatory="Yes"
+        Role="Synonym Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBCAT"
+        OrderNumber="7"
+        Mandatory="No"
+        Role="Grouping Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBORRES"
+        OrderNumber="8"
+        Mandatory="No"
+        Role="Result Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBORRESU"
+        OrderNumber="9"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBORNRLO"
+        OrderNumber="10"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBORNRHI"
+        OrderNumber="11"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBSTRESN"
+        OrderNumber="12"
+        Mandatory="No"
+        Role="Result Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBSTRESU"
+        OrderNumber="13"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBSTNRLO"
+        OrderNumber="14"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBSTNRHI"
+        OrderNumber="15"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBNRIND"
+        OrderNumber="16"
+        Mandatory="No"
+        Role="Variable Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBSPEC"
+        OrderNumber="17"
+        Mandatory="No"
+        Role="Record Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBMETHOD"
+        OrderNumber="18"
+        Mandatory="No"
+        Role="Record Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBNAM"
+        OrderNumber="19"
+        Mandatory="No"
+        Role="Record Qualifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.VISITNUM"
+        OrderNumber="19"
+        Mandatory="Yes"
+        Role="Timing"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="LB.LBDTC"
+        OrderNumber="21"
+        Mandatory="No"
+        Role="Timing"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <!-- **************************************************** -->
+      <!-- def:leaf details for hypertext linking the dataset   -->
+      <!-- **************************************************** -->
+      <def:leaf ID="Location.LB" xlink:href="./lb.xpt">
+        <def:title>./lb.xpt </def:title>
+      </def:leaf>
+    </ItemGroupDef>
+    <!-- ******************************************* -->
+    <!-- MH             ItemGroupDef INFORMATION *** -->
+    <!-- ******************************************* -->
+    <ItemGroupDef OID="MH"
+      Name="MH"
+      Repeating="Yes"
+      Purpose="Tabulation"
+      IsReferenceData="No"
+      def:Label="Medical History"
+      def:Structure="Events - One record per medical history event per subject"
+      def:DomainKeys="STUDYID, USUBJID, MHTERM"
+      def:Class="Events"
+      def:ArchiveLocationID="Location../mh">
+      <ItemRef ItemOID="STUDYID"
+        OrderNumber="1"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="DOMAIN"
+        OrderNumber="2"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="USUBJID"
+        OrderNumber="3"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="MH.MHSEQ"
+        OrderNumber="4"
+        Mandatory="Yes"
+        Role="Identifier"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <ItemRef ItemOID="MH.MHTERM"
+        OrderNumber="5"
+        Mandatory="Yes"
+        Role="Topic"
+        RoleCodeListOID="CodeList.ROLECODE"/>
+      <!-- **************************************************** -->
+      <!-- def:leaf details for hypertext linking the dataset   -->
+      <!-- **************************************************** -->
+      <def:leaf ID="Location.MH" xlink:href="./mh.xpt">
+        <def:title>./mh.xpt </def:title>
+      </def:leaf>
+    </ItemGroupDef>
+    <!-- ************************************************************ -->
+    <!-- The details of each variable is here for all domains         -->
+    <!-- ************************************************************ -->
+    <ItemDef OID="STUDYID"
+      Name="STUDYID"
+      DataType="text"
+      Length="15"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Study Identifier">
+    </ItemDef>
+    <ItemDef OID="DOMAIN"
+      Name="DOMAIN"
+      DataType="text"
+      Length="2"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Domain Abbreviation">
+    </ItemDef>
+    <ItemDef OID="SUBJID"
+      Name="SUBJID"
+      DataType="text"
+      Length="7"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Topic">
+    </ItemDef>
+    <ItemDef OID="USUBJID"
+      Name="USUBJID"
+      DataType="text"
+      Length="25"
+      Origin="Sponsor
+Defined"
+      Comment=" "
+      def:Label="Unique Subject Identifier">
+    </ItemDef>
+    <ItemDef OID="DM.SITEID"
+      Name="SITEID"
+      DataType="text"
+      Length="8"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Study Site Identifier">
+    </ItemDef>
+    <ItemDef OID="DM.RFSTDTC"
+      Name="RFSTDTC"
+      DataType="date"
+      Length="16"
+      Origin="Sponsor
+Defined"
+      Comment=" "
+      def:Label="Subject Reference Start Date/Time">
+    </ItemDef>
+    <ItemDef OID="DM.RFETDTC"
+      Name="RFETDTC"
+      DataType="date"
+      Length="16"
+      Origin="Sponsor
+Defined"
+      Comment=" "
+      def:Label="Subject Reference End Date/Time">
+    </ItemDef>
+    <ItemDef OID="DM.AGE"
+      Name="AGE"
+      DataType="integer"
+      Length="8"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Age">
+    </ItemDef>
+    <ItemDef OID="DM.AGEU"
+      Name="AGEU"
+      DataType="text"
+      Length="5"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Age Units">
+    </ItemDef>
+    <ItemDef OID="DM.ARMCD"
+      Name="ARMCD"
+      DataType="text"
+      Length="2"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Planned Arm Code">
+      <CodeListRef CodeListOID="CodeList.ARMCD"/>
+    </ItemDef>
+    <ItemDef OID="DM.ARM"
+      Name="ARM"
+      DataType="text"
+      Length="40"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Description of Planned Arm">
+      <CodeListRef CodeListOID="CodeList.ARM"/>
+    </ItemDef>
+    <ItemDef OID="DM.SEX"
+      Name="SEX"
+      DataType="text"
+      Length="2"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Sex">
+    </ItemDef>
+    <ItemDef OID="DM.COUNTRY"
+      Name="COUNTRY"
+      DataType="text"
+      Length="25"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Country of the investigational site in which the subject
+participated in the trial">
+      <CodeListRef CodeListOID="CodeList.COUNTRY"/>
+    </ItemDef>
+    <ItemDef OID="STUDYID"
+      Name="STUDYID"
+      DataType="text"
+      Length="15"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Study Identifier">
+    </ItemDef>
+    <ItemDef OID="DOMAIN"
+      Name="DOMAIN"
+      DataType="text"
+      Length="2"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Domain Abbreviation">
+    </ItemDef>
+    <ItemDef OID="USUBJID"
+      Name="USUBJID"
+      DataType="text"
+      Length="25"
+      Origin="Sponsor
+Defined"
+      Comment=" "
+      def:Label="Unique Subject Identifier">
+    </ItemDef>
+    <ItemDef OID="LB.LBSEQ"
+      Name="LBSEQ"
+      DataType="integer"
+      Length="8"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Sequence Number">
+      <CodeListRef CodeListOID="CodeList.LBSEQ"/>
+    </ItemDef>
+    <ItemDef OID="LB.LBTESTCD"
+      Name="LBTESTCD"
+      DataType="text"
+      Length="8"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Lab Test or Examination Short Name">
+      <CodeListRef CodeListOID="CodeList.LBTESTCD"/>
+      <def:ValueListRef ValueListOID="LBTESTCDVALUE"/>
+    </ItemDef>
+    <ItemDef OID="LB.LBTEST"
+      Name="LBTEST"
+      DataType="text"
+      Length="40"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Lab Test or Examination Name">
+      <CodeListRef CodeListOID="CodeList.LBTEST"/>
+    </ItemDef>
+    <ItemDef OID="LB.LBCAT"
+      Name="LBCAT"
+      DataType="text"
+      Length="200"
+      def:DisplayFormat="TEXT"
+      def:ComputationMethodOID="LBCAT_CALC"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Category for Lab Test">
+    </ItemDef>
+    <ItemDef OID="LB.LBORRES"
+      Name="LBORRES"
+      DataType="float"
+      Length="8"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Result or Finding in Original Units">
+    </ItemDef>
+    <ItemDef OID="LB.LBORRESU"
+      Name="LBORRESU"
+      DataType="text"
+      Length="200"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Original Units">
+      <CodeListRef CodeListOID="CodeList.UNIT"/>
+    </ItemDef>
+    <ItemDef OID="LB.LBORNRLO"
+      Name="LBORNRLO"
+      DataType="float"
+      Length="8"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Reference Range Lower Limit in Orig Unit">
+    </ItemDef>
+    <ItemDef OID="LB.LBORNRHI"
+      Name="LBORNRHI"
+      DataType="float"
+      Length="8"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Reference Range Upper Limit in Orig Unit">
+    </ItemDef>
+    <ItemDef OID="LB.LBSTRESN"
+      Name="LBSTRESN"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="5.3"
+      def:ComputationMethodOID="LBSTRESN_CALC"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Numeric Result/Finding in Standard Units">
+    </ItemDef>
+    <ItemDef OID="LB.LBSTRESU"
+      Name="LBSTRESU"
+      DataType="text"
+      Length="200"
+      def:DisplayFormat="TEXT"
+      def:ComputationMethodOID="LBSTRESU_CALC"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Standard Units">
+    </ItemDef>
+    <ItemDef OID="LB.LBSTNRLO"
+      Name="LBSTNRLO"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="5.3"
+      def:ComputationMethodOID="LBSTNRLO_CALC"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Reference Range Lower Limit-Std Units">
+    </ItemDef>
+    <ItemDef OID="LB.LBSTNRHI"
+      Name="LBSTNRHI"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="5.3"
+      def:ComputationMethodOID="LBSTNRHI_CALC"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Reference Range Upper Limit-Std Units">
+    </ItemDef>
+    <ItemDef OID="LB.LBNRIND"
+      Name="LBNRIND"
+      DataType="text"
+      Length="2"
+      def:DisplayFormat="TEXT"
+      def:ComputationMethodOID="LBNRIND_CALC"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Reference Range Indicator">
+    </ItemDef>
+    <ItemDef OID="LB.LBSPEC"
+      Name="LBSPEC"
+      DataType="text"
+      Length="40"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Specimen Material Type">
+    </ItemDef>
+    <ItemDef OID="LB.LBMETHOD"
+      Name="LBMETHOD"
+      DataType="text"
+      Length="8"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Method of Test or Examination">
+      <CodeListRef CodeListOID="CodeList.LBMETHOD"/>
+    </ItemDef>
+    <ItemDef OID="LB.LBNAM"
+      Name="LBNAM"
+      DataType="text"
+      Length="40"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Name or identifier of the laboratory">
+      <CodeListRef CodeListOID="CodeList.LBNAM"/>
+    </ItemDef>
+    <ItemDef OID="LB.VISITNUM"
+      Name="VISITNUM"
+      DataType="integer"
+      Length="4"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Visit Number">
+    </ItemDef>
+    <ItemDef OID="LB.LBDTC"
+      Name="LBDTC"
+      DataType="date"
+      Length="16"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Date/Time of Specimen Collection">
+    </ItemDef>
+    <ItemDef OID="STUDYID"
+      Name="STUDYID"
+      DataType="text"
+      Length="15"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Study Identifier">
+    </ItemDef>
+    <ItemDef OID="DOMAIN"
+      Name="DOMAIN"
+      DataType="text"
+      Length="2"
+      Origin="Derived"
+      Comment=" "
+      def:Label="Domain Abbreviation">
+    </ItemDef>
+    <ItemDef OID="USUBJID"
+      Name="USUBJID"
+      DataType="text"
+      Length="25"
+      Origin="Sponsor
+Defined"
+      Comment=" "
+      def:Label="Unique Subject Identifier">
+    </ItemDef>
+    <ItemDef OID="MH.MHSEQ"
+      Name="MHSEQ"
+      DataType="integer"
+      Length="8"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Sequence Number">
+    </ItemDef>
+    <ItemDef OID="MH.MHTERM"
+      Name="MHTERM"
+      DataType="text"
+      Length="40"
+      Origin="CRF"
+      Comment=" "
+      def:Label="Reported Term for the Medical History">
+    </ItemDef>
+    <!-- ************************************************************ -->
+    <!-- The details of value level items are here                    -->
+    <!-- ************************************************************ -->
+    <ItemDef OID="LBTESTCDVALUE.FIBRINO"
+      Name="FIBRINO"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="4.2"
+      Origin="Central laboratory or Central Lab Unit 2 by F-Point device"
+      Comment=" "
+      def:Label="Fibrinogen">
+    </ItemDef>
+    <ItemDef OID="LBTESTCDVALUE.PT"
+      Name="PT"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="5.2"
+      Origin="Central laboratory"
+      Comment=" "
+      def:Label="Prothrombin Time">
+    </ItemDef>
+    <ItemDef OID="LBTESTCDVALUE.APTT"
+      Name="APTT"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="5.2"
+      Origin="Central laboratory"
+      Comment=" "
+      def:Label="Activated Partial Thromboplastin Time">
+    </ItemDef>
+    <ItemDef OID="LBTESTCDVALUE.HCT"
+      Name="HCT"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="4.3"
+      Origin="Central laboratory"
+      Comment=" "
+      def:Label="Hematocrit">
+    </ItemDef>
+    <ItemDef OID="LBTESTCDVALUE.PLAT"
+      Name="PLAT"
+      DataType="float"
+      Length="8"
+      def:DisplayFormat="4."
+      Origin="Central laboratory"
+      Comment=" "
+      def:Label="Platelets">
+    </ItemDef>
+    <!-- ************************************************************ -->
+    <!-- Codelists are presented below                                -->
+    <!-- ************************************************************ -->
+    <CodeList OID="CodeList.ARM"
+      Name="ARM"
+      DataType="TEXT">
+      <CodeListItem CodedValue="By_Operator_A" def:Rank="1">
+        <Decode>
+          <TranslatedText>Assigned randomly to be F-Point assayed by OperatorA</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="By_Operator_B" def:Rank="2">
+        <Decode>
+          <TranslatedText>Assigned randomly to be F-Point assayed by OperatorB</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.ARMCD"
+      Name="ARMCD"
+      DataType="TEXT">
+      <CodeListItem CodedValue="A" def:Rank="1">
+        <Decode>
+          <TranslatedText>Assigned randomly to be F-Point assayed by OperatorA</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="B" def:Rank="2">
+        <Decode>
+          <TranslatedText>Assigned randomly to be F-Point assayed by OperatorB</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.COUNTRY"
+      Name="COUNTRY"
+      DataType="TEXT">
+      <CodeListItem CodedValue="IRELAND" def:Rank="1">
+        <Decode>
+          <TranslatedText>IRELAND</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.LBMETHOD"
+      Name="LBMETHOD"
+      DataType="TEXT">
+      <CodeListItem CodedValue="PTFIB" def:Rank="1">
+        <Decode>
+          <TranslatedText>PT-Fibrinogen, Plasma</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="CBC_HCT" def:Rank="2">
+        <Decode>
+          <TranslatedText>Complete Blood Cell Count (CBC) with Differential, Blood: Hematocrit</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="CLFIB" def:Rank="3">
+        <Decode>
+          <TranslatedText>Fibrinogen, Clauss, Plasma</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="APTSC" def:Rank="4">
+        <Decode>
+          <TranslatedText>Activated Partial Thromboplastin Time (APTT), Plasma</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="PTSC" def:Rank="5">
+        <Decode>
+          <TranslatedText>Prothrombin Time (PT), Plasma</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="FPOIN" def:Rank="6">
+        <Decode>
+          <TranslatedText>Novel F-Point whole blood fibrinogen assay</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="CBC_PLT" def:Rank="7">
+        <Decode>
+          <TranslatedText>Complete Blood Cell Count (CBC) with Differential, Blood: Platelet Count</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.LBNAM"
+      Name="LBNAM"
+      DataType="TEXT">
+      <CodeListItem CodedValue="Central Laboratory" def:Rank="1">
+        <Decode>
+          <TranslatedText>Tested in Hospital Central Laboratory</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="F-Point Operator 1" def:Rank="2">
+        <Decode>
+          <TranslatedText>Assayed in Central Lab Unit 2 by F-Point device - Operator 1 assigned</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="F-Point Operator 2" def:Rank="3">
+        <Decode>
+          <TranslatedText>Assayed in Central Lab Unit 2 by F-Point device - Operator 2 assigned</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.LBSEQ"
+      Name="LBSEQ"
+      DataType=" ">
+      <CodeListItem CodedValue="1" def:Rank="1">
+        <Decode>
+          <TranslatedText>1</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="2" def:Rank="2">
+        <Decode>
+          <TranslatedText>2</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="3" def:Rank="3">
+        <Decode>
+          <TranslatedText>3</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="4" def:Rank="4">
+        <Decode>
+          <TranslatedText>4</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="5" def:Rank="5">
+        <Decode>
+          <TranslatedText>5</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="6" def:Rank="6">
+        <Decode>
+          <TranslatedText>6</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="7" def:Rank="7">
+        <Decode>
+          <TranslatedText>7</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.LBTEST"
+      Name="LBTEST"
+      DataType="TEXT">
+      <CodeListItem CodedValue="Fibrinogen" def:Rank="1">
+        <Decode>
+          <TranslatedText>Fibrinogen</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Prothrombin Time" def:Rank="2">
+        <Decode>
+          <TranslatedText>Prothrombin Time</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Activated Partial Thromboplastin Time" def:Rank="3">
+        <Decode>
+          <TranslatedText>Activated Partial Thromboplastin Time</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Hematocrit" def:Rank="4">
+        <Decode>
+          <TranslatedText>Hematocrit</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Platelets" def:Rank="5">
+        <Decode>
+          <TranslatedText>Platelets</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.LBTESTCD"
+      Name="LBTESTCD"
+      DataType="TEXT">
+      <CodeListItem CodedValue="FIBRINO" def:Rank="1">
+        <Decode>
+          <TranslatedText>Fibrinogen</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="PT" def:Rank="2">
+        <Decode>
+          <TranslatedText>Prothrombin Time</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="APTT" def:Rank="3">
+        <Decode>
+          <TranslatedText>Activated Partial Thromboplastin Time</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="HCT" def:Rank="4">
+        <Decode>
+          <TranslatedText>Hematocrit</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="PLAT" def:Rank="5">
+        <Decode>
+          <TranslatedText>Platelets</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.ROLECODE"
+      Name="ROLECODE"
+      DataType="TEXT">
+      <CodeListItem CodedValue="Grouping Qualifier" def:Rank="1">
+        <Decode>
+          <TranslatedText>Grouping Qualifier</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Identifier" def:Rank="2">
+        <Decode>
+          <TranslatedText>Identifier</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Record Qualifier" def:Rank="3">
+        <Decode>
+          <TranslatedText>Record Qualifier</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Rule" def:Rank="4">
+        <Decode>
+          <TranslatedText>Rule</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Result Qualifier" def:Rank="5">
+        <Decode>
+          <TranslatedText>Result Qualifier</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Synonym Qualifier" def:Rank="6">
+        <Decode>
+          <TranslatedText>Synonym Qualifier</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Timing" def:Rank="7">
+        <Decode>
+          <TranslatedText>Timing</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="Topic" def:Rank="8">
+        <Decode>
+          <TranslatedText>Topic</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+    <CodeList OID="CodeList.UNIT"
+      Name="UNIT"
+      DataType="TEXT">
+      <CodeListItem CodedValue="%" def:Rank="1">
+        <Decode>
+          <TranslatedText>Percentage</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="mg/mL" def:Rank="2">
+        <Decode>
+          <TranslatedText>Milligram per milliliter</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="cells/nL" def:Rank="3">
+        <Decode>
+          <TranslatedText>Cells per nanolitter</TranslatedText>
+        </Decode>
+      </CodeListItem>
+      <CodeListItem CodedValue="sec" def:Rank="4">
+        <Decode>
+          <TranslatedText>Seconds</TranslatedText>
+        </Decode>
+      </CodeListItem>
+    </CodeList>
+  </MetaDataVersion>
+</Study>
+</ODM>
