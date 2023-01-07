@@ -17,7 +17,7 @@ R-file [corefun_fp.R](https://github.com/efremov1799/F-Point/blob/main/corefun_f
 The repository alos contains a brief report [AnalytPerforRepor.pdf](https://github.com/efremov1799/F-Point/blob/main/AnalytPerforRepor.pdf) of analytical performance of F-Point method evaluated on artificial quality control samples.
 
 ## F-Point pilot clinical evaluation data; 
-The repository also contains [folder](https://github.com/efremov1799/F-Point/tree/main/SDTM_Clinical_Eval) with data from clinical evaluation period of F-Point. The data is standardised in order to comply with SDTM model. The define version is 1-0-0, and the corresponding [XML file](https://github.com/efremov1799/F-Point/blob/main/SDTM_Clinical_Eval/define.xml) can be viewed in, e.g., Internet Explorer. There are 3 domains, namely LB, MH, DM that contain Laboratory Obervations, Medical History and Demographics data respectively. 
+The repository also contains [folder](https://github.com/efremov1799/F-Point/tree/main/SDTM_Clinical_Eval) with data from clinical evaluation period of F-Point. The data is standardised in order to comply with SDTM model. The define version is 1-0-0, and the corresponding [XML file](https://github.com/efremov1799/F-Point/blob/main/SDTM_Clinical_Eval/define.xml) can be viewed in, e.g., Internet Explorer. There are 3 domains, namely LB, MH, DM that contain Laboratory Obervations, Medical History and Demographics data respectively. In addition, the repository contains pdf docoment [ClinPerformStud.pdf](https://github.com/efremov1799/F-Point/blob/main/ClinPerformStud.pdf) that summarizes key findings from F-Point clinical evaluation study.
 
 
 
