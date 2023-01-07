@@ -1,6 +1,7 @@
 # F-Point Project: notes, scripts, data
 
 Author: Vitaly Efremov <v_a_efremov at yahoo.com>
+License: [GPL-2](http://cran.nexr.com/web/licenses/GPL-2)
 
 The F-Point is a challenging project driven by xPoint Diagnostics Ltd. 
 The project aims to deliver a novel point-of-care device that measures plasma fibrinogen directly in a whole blood sample. 
